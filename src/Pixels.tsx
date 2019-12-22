@@ -1,29 +1,30 @@
 import React from 'react';
-import styled from 'styled-components';
 
 import Pixel from './Pixel';
 
 interface Props {
   data: number[][];
-  size: number;
+  size: 'small' | 'medium' | 'large';
 }
+
+const SIZE = {
+  small: 64,
+  medium: 128,
+  large: 256,
+};
 
 const Pixels = ({ data, size }: Props) => {
   return (
-    <Wrapper>
+    <div>
       {data.map((row, rowIndex) => (
         <div style={{ display: 'flex' }}>
           {row.map((column, columnIndex) => (
-            <Pixel value={data[rowIndex][columnIndex]} size={size / 16} />
+            <Pixel value={data[rowIndex][columnIndex]} size={SIZE[size] / 16} />
           ))}
         </div>
       ))}
-    </Wrapper>
+    </div>
   );
 };
-
-const Wrapper = styled.div`
-  /* transform: scale(0.2, 0.2); */
-`;
 
 export default Pixels;

@@ -1,5 +1,5 @@
 import React from 'react';
-import styled, { createGlobalStyle, ThemeProvider } from 'styled-components';
+import styled, { createGlobalStyle } from 'styled-components';
 
 import Pixels from './Pixels';
 
@@ -26,9 +26,9 @@ const App: React.FC = () => {
     <>
       <GlobalStyle> </GlobalStyle>
       <Wrapper>
-        <Pixels data={DATA} size={128}></Pixels>
-        <Pixels data={DATA} size={128}></Pixels>
-        <Pixels data={DATA} size={128}></Pixels>
+        <Pixels data={DATA} size="medium"></Pixels>
+        <Pixels data={DATA} size="medium"></Pixels>
+        <Pixels data={DATA} size="medium"></Pixels>
       </Wrapper>
     </>
   );
@@ -43,7 +43,6 @@ const GlobalStyle = createGlobalStyle`
 const Wrapper = styled.div`
   width: 768px;
   display: flex;
-  /* border: 1px solid #fff; */
 `;
 
 export default App;
