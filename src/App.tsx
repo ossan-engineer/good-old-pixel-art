@@ -101,8 +101,9 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 const Wrapper = styled.div`
-  width: 768px;
+  /* width: 768px; */
   display: flex;
+  justify-content: center;
 `;
 
 export default App;
