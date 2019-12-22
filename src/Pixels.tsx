@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 import Pixel from './Pixel';
 
 interface Props {
-  data: number[][];
+  data: number[][][];
   size: 'small' | 'medium' | 'large';
 }
 
@@ -14,12 +14,24 @@ const SIZE = {
 };
 
 const Pixels = ({ data, size }: Props) => {
+  const [animation, setAnimation] = useState(0);
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setAnimation(prevState => (prevState === 0 ? 1 : 0));
+    }, 500);
+    return () => {
+      clearInterval(timer);
+    };
+  }, []);
   return (
     <div>
-      {data.map((row, rowIndex) => (
+      {data[animation].map((row, rowIndex) => (
         <div style={{ display: 'flex' }}>
           {row.map((column, columnIndex) => (
-            <Pixel value={data[rowIndex][columnIndex]} size={SIZE[size] / 16} />
+            <Pixel
+              value={data[animation][rowIndex][columnIndex]}
+              size={SIZE[size] / 16}
+            />
           ))}
         </div>
       ))}
