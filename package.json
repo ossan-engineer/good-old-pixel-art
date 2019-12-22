@@ -13,6 +13,7 @@
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-scripts": "3.3.0",
+    "styled-components": "^4.4.1",
     "typescript": "~3.7.2"
   },
   "scripts": {
@@ -35,5 +36,11 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@types/prettier": "^1.19.0",
+    "@types/styled-components": "^4.4.1",
+    "@types/testing-library__react": "^9.1.2",
+    "prettier": "^1.19.1"
   }
 }
