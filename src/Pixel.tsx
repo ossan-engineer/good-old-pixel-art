@@ -1,10 +1,10 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 
-interface Props {
+type Props = {
   value: number;
   size: number;
-}
+};
 
 const Pixel = ({ value, size }: Props) => {
   return <Wrapper value={value} size={size} />;
