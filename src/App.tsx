@@ -2,6 +2,7 @@ import React from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
 
 import Pixels from './Pixels';
+import Editor from './Editor';
 
 const DATA1 = [
   [
@@ -86,10 +87,11 @@ const App: React.FC = () => {
     <>
       <GlobalStyle> </GlobalStyle>
       <Wrapper>
-        <Pixels data={DATA1} size="medium"></Pixels>
-        <Pixels data={DATA2} size="medium"></Pixels>
-        <Pixels data={DATA1} size="medium"></Pixels>
+        <Pixels data={DATA1} size="small"></Pixels>
+        <Pixels data={DATA2} size="small"></Pixels>
+        <Pixels data={DATA1} size="small"></Pixels>
       </Wrapper>
+      <Editor></Editor>
     </>
   );
 };
@@ -104,6 +106,10 @@ const Wrapper = styled.div`
   /* width: 768px; */
   display: flex;
   justify-content: center;
+`;
+
+const White = styled.div`
+  background-color: #fff;
 `;
 
 export default App;

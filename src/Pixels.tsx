@@ -26,9 +26,10 @@ const Pixels = ({ data, size }: Props) => {
   return (
     <div>
       {data[animation].map((row, rowIndex) => (
-        <div style={{ display: 'flex' }}>
+        <div key={rowIndex} style={{ display: 'flex' }}>
           {row.map((column, columnIndex) => (
             <Pixel
+              key={columnIndex}
               value={data[animation][rowIndex][columnIndex]}
               size={SIZE[size] / 16}
             />

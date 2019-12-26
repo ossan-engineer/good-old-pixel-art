@@ -2,12 +2,21 @@ import React from 'react';
 import styled, { css } from 'styled-components';
 
 interface Props {
+  className?: string;
   value: number;
   size: number;
+  onClick?: () => void;
 }
 
-const Pixel = ({ value, size }: Props) => {
-  return <Wrapper value={value} size={size} />;
+const Pixel = ({ className, value, size, onClick }: Props) => {
+  return (
+    <Wrapper
+      className={className}
+      value={value}
+      size={size}
+      onClick={onClick}
+    />
+  );
 };
 
 const Wrapper = styled.div<Props>`
