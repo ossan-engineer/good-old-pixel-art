@@ -4,6 +4,10 @@ import cloneDeep from 'lodash.clonedeep';
 
 import Pixel from './Pixel';
 
+type Props = {
+  onSave: (dataArray: number[][][][]) => void;
+};
+
 const SIZE = {
   small: 64,
   medium: 128,
@@ -48,7 +52,7 @@ const DATA = [
   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
 ];
 
-const Editor = () => {
+const Editor = ({ onSave }: Props) => {
   const [data, setData] = useState([
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -99,6 +103,13 @@ const Editor = () => {
           </div>
         ))}
       </Wrapper>
+      <button
+        onClick={() =>
+          onSave((prevDataArray: number[][][][]) => cloneDeep(prevDataArray))
+        }
+      >
+        Save
+      </button>
       <button onClick={() => setData(cloneDeep(INITIAL_DATA))}>Reset</button>
     </>
   );

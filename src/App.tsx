@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
 
 import Pixels from './Pixels';
@@ -83,15 +83,18 @@ const DATA2 = [
 ];
 
 const App: React.FC = () => {
+  const [dataArray, setDataArray] = useState([DATA1, DATA2, DATA1]);
+  const handleSave = () => {};
+
   return (
     <>
       <GlobalStyle> </GlobalStyle>
       <Wrapper>
-        <Pixels data={DATA1} size="small"></Pixels>
-        <Pixels data={DATA2} size="small"></Pixels>
-        <Pixels data={DATA1} size="small"></Pixels>
+        <Pixels data={dataArray[0]} size="small"></Pixels>
+        <Pixels data={dataArray[1]} size="small"></Pixels>
+        <Pixels data={dataArray[2]} size="small"></Pixels>
       </Wrapper>
-      <Editor></Editor>
+      <Editor onSave={setDataArray} />
     </>
   );
 };
