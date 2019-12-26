@@ -1,12 +1,12 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 
-interface Props {
+type Props = {
   className?: string;
   value: number;
   size: number;
   onClick?: () => void;
-}
+};
 
 const Pixel = ({ className, value, size, onClick }: Props) => {
   return (

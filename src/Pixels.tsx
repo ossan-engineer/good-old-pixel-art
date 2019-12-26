@@ -2,15 +2,15 @@ import React, { useState, useEffect } from 'react';
 
 import Pixel from './Pixel';
 
-interface Props {
+type Props = {
   data: number[][][];
   size: 'small' | 'medium' | 'large';
-}
+};
 
 const SIZE = {
   small: 64,
   medium: 128,
-  large: 256,
+  large: 256
 };
 
 const Pixels = ({ data, size }: Props) => {
