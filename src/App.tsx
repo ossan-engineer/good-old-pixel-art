@@ -87,15 +87,15 @@ const App: React.FC = () => {
   const handleSave = () => {};
 
   return (
-    <>
+    <Wrapper>
       <GlobalStyle> </GlobalStyle>
-      <Wrapper>
+      <PixelsWrapper>
         <Pixels data={dataArray[0]} size="small"></Pixels>
         <Pixels data={dataArray[1]} size="small"></Pixels>
         <Pixels data={dataArray[2]} size="small"></Pixels>
-      </Wrapper>
+      </PixelsWrapper>
       <Editor onSave={setDataArray} />
-    </>
+    </Wrapper>
   );
 };
 
@@ -108,13 +108,17 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+`;
+
+const PixelsWrapper = styled.div`
   /* width: 768px; */
   display: flex;
   justify-content: center;
-`;
-
-const White = styled.div`
-  background-color: #fff;
 `;
 
 export default App;
