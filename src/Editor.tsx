@@ -57,7 +57,7 @@ const Editor = ({ onSave }: Props) => {
 
   useEffect(() => {
     const listener = () => {
-      setWidth(window.innerWidth);
+      setWidth(window.innerWidth < 500 ? window.innerWidth : 500);
     };
     window.addEventListener('resize', listener);
     return () => {
@@ -139,10 +139,11 @@ const Editor = ({ onSave }: Props) => {
 
 const Wrapper = styled.div<{ width: number }>`
   border: 1px solid #fff;
+  /* max-width: 500px; */
   width: ${({ width }) => width - 20}px;
   /* width: 386px; */
   /* width: ${({ width }) => width}px; */
-  margin: 10px;
+  margin: 10px auto;
 `;
 
 const PixelWrapper = styled.div`
