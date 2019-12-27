@@ -10,7 +10,7 @@ type Props = {
 const SIZE = {
   small: 64,
   medium: 128,
-  large: 256
+  large: 256,
 };
 
 const Pixels = ({ data, size }: Props) => {

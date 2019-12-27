@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import cloneDeep from 'lodash.clonedeep';
 
@@ -53,6 +53,18 @@ const DATA = [
 ];
 
 const Editor = ({ onSave }: Props) => {
+  const [width, setWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    const listener = () => {
+      setWidth(window.innerWidth);
+    };
+    window.addEventListener('resize', listener);
+    return () => {
+      window.removeEventListener('resize', listener);
+    };
+  }, []);
+
   const [data, setData] = useState([
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -71,10 +83,10 @@ const Editor = ({ onSave }: Props) => {
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   ]);
-  console.log(data[0][0]);
+  console.log(JSON.stringify(data));
   return (
     <>
-      <Wrapper>
+      <Wrapper width={width}>
         {data.map((row, rowIndex) => (
           <div key={rowIndex} style={{ display: 'flex' }}>
             {row.map((column, columnIndex) => (
@@ -96,33 +108,92 @@ const Editor = ({ onSave }: Props) => {
               >
                 <Pixel
                   value={data[rowIndex][columnIndex]}
-                  size={SIZE.large / 16}
+                  size={(width - 20) / 24}
                 />
               </PixelWrapper>
             ))}
           </div>
         ))}
       </Wrapper>
-      <button
+      {/* <button
         onClick={() =>
           onSave((prevDataArray: number[][][][]) => cloneDeep(prevDataArray))
         }
       >
         Save
-      </button>
-      <button onClick={() => setData(cloneDeep(INITIAL_DATA))}>Reset</button>
+      </button> */}
+      <Buttons>
+        <Reset onClick={() => setData(cloneDeep(INITIAL_DATA))}>
+          <div></div>
+        </Reset>
+        <Reset onClick={() => setData(cloneDeep(DATA))}>
+          <div></div>
+        </Reset>
+        <Reset onClick={() => setData(cloneDeep(DATA))}>
+          <div></div>
+        </Reset>
+      </Buttons>
     </>
   );
 };
 
-const Wrapper = styled.div`
+const Wrapper = styled.div<{ width: number }>`
   border: 1px solid #fff;
-  width: 386px;
-  /* width: 100%;   */
+  width: ${({ width }) => width - 20}px;
+  /* width: 386px; */
+  /* width: ${({ width }) => width}px; */
+  margin: 10px;
 `;
 
 const PixelWrapper = styled.div`
   cursor: pointer;
+`;
+
+const Buttons = styled.div`
+  display: flex;
+  justify-content: center;
+  margin: 30px;
+
+  button {
+    margin: 0 10px;
+  }
+`;
+
+const Reset = styled.button`
+  box-shadow: inset 0px 1px 0px 0px #cf866c;
+  background: linear-gradient(to bottom, #d0451b 5%, #bc3315 100%);
+  background-color: #d0451b;
+  border-radius: 50%;
+  border: 1px solid #942911;
+  display: flex;
+  align-items: flex-end;
+  cursor: pointer;
+  padding: 4px;
+  position: relative;
+
+  div {
+    content: '';
+    display: block;
+    box-shadow: inset 0px 1px 0px 0px #cf866c, 0px 1px 0px 0px #000;
+    background: linear-gradient(to bottom, #d0451b 5%, #bc3315 100%);
+    background-color: #d0451b;
+    border-radius: 50%;
+    border: 1px solid #942911;
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    text-decoration: none;
+
+    &:active {
+      box-shadow: inset 0px 1px 0px 0px #cf866c, 0px 1px 0px 0px #000,
+        inset 0px 1px 0px 0px #000;
+    }
+
+    &:hover {
+      background: linear-gradient(to bottom, #bc3315 5%, #d0451b 100%);
+      background-color: #bc3315;
+    }
+  }
 `;
 
 export default Editor;

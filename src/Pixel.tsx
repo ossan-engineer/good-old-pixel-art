@@ -11,6 +11,7 @@ type Props = {
 const Pixel = ({ className, value, size, onClick }: Props) => {
   return (
     <Wrapper
+      style={{ width: size, height: size }}
       className={className}
       value={value}
       size={size}
@@ -20,8 +21,8 @@ const Pixel = ({ className, value, size, onClick }: Props) => {
 };
 
 const Wrapper = styled.div<Props>`
-  width: ${({ size }) => size}px;
-  height: ${({ size }) => size}px;
+  /* width: ${({ size }) => size}px;
+  height: ${({ size }) => size}px; */
   margin: ${({ size }) => size / 4}px;
   border-radius: 50%;
   ${({ value, size }) =>

@@ -100,8 +100,10 @@ const App: React.FC = () => {
 };
 
 const GlobalStyle = createGlobalStyle`
-  html {
+  body {
     background-color: #000;
+    padding: 0;
+    margin: 0;
   }
 `;
 
