@@ -5,7 +5,7 @@ import cloneDeep from 'lodash.clonedeep';
 import Pixel from './Pixel';
 
 type Props = {
-  onSave: (dataArray: number[][][][]) => void;
+  onSave: (data: any) => void;
 };
 
 const SIZE = {
@@ -123,15 +123,20 @@ const Editor = ({ onSave }: Props) => {
         Save
       </button> */}
       <Buttons>
-        <Reset onClick={() => setData(cloneDeep(INITIAL_DATA))}>
+        <Button onClick={() => setData(cloneDeep(INITIAL_DATA))}>
           <div></div>
-        </Reset>
-        <Reset onClick={() => setData(cloneDeep(DATA))}>
+        </Button>
+        <Button onClick={() => setData(cloneDeep(DATA))}>
           <div></div>
-        </Reset>
-        <Reset onClick={() => setData(cloneDeep(DATA))}>
+        </Button>
+        <Button
+          onClick={() => {
+            onSave(data);
+            setData(cloneDeep(INITIAL_DATA));
+          }}
+        >
           <div></div>
-        </Reset>
+        </Button>
       </Buttons>
     </>
   );
@@ -160,7 +165,7 @@ const Buttons = styled.div`
   }
 `;
 
-const Reset = styled.button`
+const Button = styled.button<any>`
   box-shadow: inset 0px 1px 0px 0px #cf866c;
   background: linear-gradient(to bottom, #d0451b 5%, #bc3315 100%);
   background-color: #d0451b;

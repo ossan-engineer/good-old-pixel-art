@@ -83,8 +83,14 @@ const DATA2 = [
 ];
 
 const App: React.FC = () => {
-  const [dataArray, setDataArray] = useState([DATA1, DATA2, DATA1]);
-  const handleSave = () => {};
+  const [dataArray, setDataArray] = useState<any>([DATA1, DATA2, DATA1]);
+  const handleSave = (data: number[]) => {
+    setDataArray((prevDataArray: number[]) => {
+      const newDataArray = [...prevDataArray];
+      newDataArray.shift();
+      return [...newDataArray, [data, data]];
+    });
+  };
 
   return (
     <Wrapper>
@@ -94,7 +100,7 @@ const App: React.FC = () => {
         <Pixels data={dataArray[1]} size="small"></Pixels>
         <Pixels data={dataArray[2]} size="small"></Pixels>
       </PixelsWrapper>
-      <Editor onSave={setDataArray} />
+      <Editor onSave={handleSave} />
     </Wrapper>
   );
 };
