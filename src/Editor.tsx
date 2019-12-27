@@ -49,7 +49,10 @@ const DATA = [
 
 const Editor = ({ onSave }: Props) => {
   const [width, setWidth] = useState(window.innerWidth);
-  const { play: playShoot } = useSimpleAudio('/shoot.wav', false);
+  const { play: playShoot, stop: stopShoot } = useSimpleAudio(
+    '/shoot.wav',
+    false
+  );
   const { play: playReset } = useSimpleAudio('/reset.wav', false);
   const { play: playErase } = useSimpleAudio('/erase.wav', false);
   const { play: playSave } = useSimpleAudio('/save.wav', false);
@@ -104,6 +107,7 @@ const Editor = ({ onSave }: Props) => {
 
                     return newData;
                   });
+                  stopShoot();
                   playShoot();
                 }}
               >
