@@ -1,17 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import cloneDeep from 'lodash.clonedeep';
+import useSimpleAudio from 'use-simple-audio';
 
 import Pixel from './Pixel';
 
 type Props = {
   onSave: (data: any) => void;
-};
-
-const SIZE = {
-  small: 64,
-  medium: 128,
-  large: 256,
 };
 
 const INITIAL_DATA = [
@@ -54,12 +49,17 @@ const DATA = [
 
 const Editor = ({ onSave }: Props) => {
   const [width, setWidth] = useState(window.innerWidth);
+  const { play: playShoot } = useSimpleAudio('/shoot.wav', false);
+  const { play: playReset } = useSimpleAudio('/reset.wav', false);
+  const { play: playErase } = useSimpleAudio('/erase.wav', false);
+  const { play: playSave } = useSimpleAudio('/save.wav', false);
 
   useEffect(() => {
     const listener = () => {
       setWidth(window.innerWidth < 500 ? window.innerWidth : 500);
     };
     window.addEventListener('resize', listener);
+    listener();
     return () => {
       window.removeEventListener('resize', listener);
     };
@@ -92,7 +92,7 @@ const Editor = ({ onSave }: Props) => {
             {row.map((column, columnIndex) => (
               <PixelWrapper
                 key={columnIndex}
-                onClick={() =>
+                onClick={() => {
                   setData(prevData => {
                     const newData = [...prevData];
                     newData[rowIndex][columnIndex] =
@@ -103,8 +103,9 @@ const Editor = ({ onSave }: Props) => {
                     );
 
                     return newData;
-                  })
-                }
+                  });
+                  playShoot();
+                }}
               >
                 <Pixel
                   value={data[rowIndex][columnIndex]}
@@ -123,15 +124,26 @@ const Editor = ({ onSave }: Props) => {
         Save
       </button> */}
       <Buttons>
-        <Button onClick={() => setData(cloneDeep(INITIAL_DATA))}>
+        <Button
+          onClick={() => {
+            setData(cloneDeep(INITIAL_DATA));
+            playErase();
+          }}
+        >
           <div></div>
         </Button>
-        <Button onClick={() => setData(cloneDeep(DATA))}>
+        <Button
+          onClick={() => {
+            setData(cloneDeep(DATA));
+            playReset();
+          }}
+        >
           <div></div>
         </Button>
         <Button
           onClick={() => {
             onSave(data);
+            playSave();
             setData(cloneDeep(INITIAL_DATA));
           }}
         >
