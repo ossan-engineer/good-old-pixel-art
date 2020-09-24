@@ -16,7 +16,7 @@
     "react-scripts": "3.3.0",
     "styled-components": "^4.4.1",
     "typescript": "~3.7.2",
-    "use-simple-audio": "^1.0.7"
+    "use-simple-audio": "^1.1.0"
   },
   "scripts": {
     "start": "react-scripts start",

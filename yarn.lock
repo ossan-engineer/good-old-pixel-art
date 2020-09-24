@@ -10186,10 +10186,10 @@ url@^0.11.0:
     punycode "1.3.2"
     querystring "0.2.0"
 
-use-simple-audio@^1.0.7:
-  version "1.0.7"
-  resolved "https://registry.yarnpkg.com/use-simple-audio/-/use-simple-audio-1.0.7.tgz#7579474be4a3415441d8e9d267fbae03e2c7c777"
-  integrity sha512-PK6UykCH64Uh9eyHsJ9Iwk8UwjV2N8bH7cPYNj15sKoZv+MvEr9Nysb+iB9pckifsGd7UyvRqJydX9odAtMP0g==
+use-simple-audio@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/use-simple-audio/-/use-simple-audio-1.1.0.tgz#e856860bb45ee1dd620517258682cda5204f2eb9"
+  integrity sha512-ZwoPjkGX2ZLRExnRxMLEvuDBYYXAKZ1KVBiU4G8vl43v8ui2WH0k/Fp0FTOA+amFFCTfuSGYP3Xl+IaTamBj3Q==
 
 use@^3.1.0:
   version "3.1.1"
